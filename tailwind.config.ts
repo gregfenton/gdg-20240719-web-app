@@ -14,17 +14,23 @@
  * limitations under the License.
  */
 
-"use client";
+import type { Config } from "tailwindcss";
 
-import PhotosContainer from "@/components/photo-container";
-import { FirebaseUserContext } from "@/lib/firebase-user";
-import { useContext } from "react";
-
-const PhotosPage = () => {
-  const user = useContext(FirebaseUserContext);
-  const uid = user.currentUser?.uid;
-
-  return <PhotosContainer />;
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+    },
+  },
+  plugins: [],
 };
-
-export default PhotosPage;
+export default config;

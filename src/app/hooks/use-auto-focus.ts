@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-"use client";
+import { useCallback } from "react";
 
-import PhotosContainer from "@/components/photo-container";
-import { FirebaseUserContext } from "@/lib/firebase-user";
-import { useContext } from "react";
+const useAutoFocus = () => {
+  const inputRef = useCallback((inputElement: HTMLElement | null) => {
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, []);
 
-const PhotosPage = () => {
-  const user = useContext(FirebaseUserContext);
-  const uid = user.currentUser?.uid;
-
-  return <PhotosContainer />;
+  return inputRef;
 };
 
-export default PhotosPage;
+export default useAutoFocus;
